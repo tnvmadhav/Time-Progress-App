@@ -50,7 +50,7 @@ func getPort() string {
 	if p != "" {
 		return ":" + p
 	}
-	return ":8080"
+	return ":5000"
 }
 
 func test(w http.ResponseWriter, r *http.Request){
