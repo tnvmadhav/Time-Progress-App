@@ -18,7 +18,7 @@ func Updated(updateChan chan float64) float64 {
 func IsProgressed() float64 {
 	for {
 		answer := GetTimeProgress()
-		fmt.Println(answer)
+		fmt.Println(int(answer))
 		latency := answer - math.Floor(answer)
 		if latency > 0 && latency < 0.000004 {
 			return answer
