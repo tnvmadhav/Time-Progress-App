@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"time"
 	"math"
+	"net/http"
+	"os"
 )
 
 func Updated(updateChan chan float64) float64 {
@@ -35,8 +37,22 @@ func GetTimeProgress() float64 {
 
 func main() {
 	fmt.Println("Year Progress App")
+	http.HandleFunc("/", test)
+	go http.ListenAndServe(getPort(), nil)
 	c := make(chan float64)
 	go Updated(c)
 	answer := <- c
 	fmt.Println(tweet(fmt.Sprintf("The Year has progressed: %d%", answer)))
+}
+
+func getPort() string {
+	p := os.Getenv("PORT")
+	if p != "" {
+		return ":" + p
+	}
+	return ":8080"
+}
+
+func test(w http.ResponseWriter, r *http.Request){
+  fmt.Fprintf(w, "this is a test")
 }
