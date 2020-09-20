@@ -1,1 +1,1 @@
-“web: TimeProgressApp”
+“worker: TimeProgressApp”
