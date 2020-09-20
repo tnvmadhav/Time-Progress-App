@@ -18,7 +18,7 @@ func Updated(updateChan chan float64) float64 {
 func IsProgressed() float64 {
 	for {
 		answer := GetTimeProgress()
-		fmt.Println(int(answer))
+		fmt.Println(answer)
 		latency := answer - math.Floor(answer)
 		if latency > 0 && latency < 0.000004 {
 			return answer
@@ -42,7 +42,7 @@ func main() {
 	c := make(chan float64)
 	go Updated(c)
 	answer := <- c
-	fmt.Println(tweet(fmt.Sprintf("The Year has progressed: %d%", answer)))
+	fmt.Println(tweet(fmt.Sprintf("The Year has progressed: %d%", int(answer))))
 }
 
 func getPort() string {
